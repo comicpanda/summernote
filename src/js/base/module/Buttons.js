@@ -447,28 +447,36 @@ export default class Buttons {
       }).render();
     });
 
-    const justifyLeft = this.button({
-      contents: this.ui.icon(this.options.icons.alignLeft),
-      tooltip: this.lang.paragraph.left + this.representShortcut('justifyLeft'),
-      click: this.context.createInvokeHandler('editor.justifyLeft'),
+    this.context.memo('button.justifyLeft', () => {
+      return this.button({
+        contents: this.ui.icon(this.options.icons.alignLeft),
+        tooltip: this.lang.paragraph.left + this.representShortcut('justifyLeft'),
+        click: this.context.createInvokeHandler('editor.justifyLeft'),
+      }).render();
     });
 
-    const justifyCenter = this.button({
-      contents: this.ui.icon(this.options.icons.alignCenter),
-      tooltip: this.lang.paragraph.center + this.representShortcut('justifyCenter'),
-      click: this.context.createInvokeHandler('editor.justifyCenter'),
+    this.context.memo('button.justifyCenter', () => {
+      return this.button({
+        contents: this.ui.icon(this.options.icons.alignCenter),
+        tooltip: this.lang.paragraph.center + this.representShortcut('justifyCenter'),
+        click: this.context.createInvokeHandler('editor.justifyCenter'),
+      }).render();
     });
 
-    const justifyRight = this.button({
-      contents: this.ui.icon(this.options.icons.alignRight),
-      tooltip: this.lang.paragraph.right + this.representShortcut('justifyRight'),
-      click: this.context.createInvokeHandler('editor.justifyRight'),
+    this.context.memo('button.justifyRight', () => {
+      return this.button({
+        contents: this.ui.icon(this.options.icons.alignRight),
+        tooltip: this.lang.paragraph.right + this.representShortcut('justifyRight'),
+        click: this.context.createInvokeHandler('editor.justifyRight'),
+      }).render();
     });
 
-    const justifyFull = this.button({
-      contents: this.ui.icon(this.options.icons.alignJustify),
-      tooltip: this.lang.paragraph.justify + this.representShortcut('justifyFull'),
-      click: this.context.createInvokeHandler('editor.justifyFull'),
+    this.context.memo('button.justifyFull', () => {
+      return this.button({
+        contents: this.ui.icon(this.options.icons.alignJustify),
+        tooltip: this.lang.paragraph.justify + this.representShortcut('justifyFull'),
+        click: this.context.createInvokeHandler('editor.justifyFull'),
+      }).render();
     });
 
     const outdent = this.button({
@@ -483,10 +491,6 @@ export default class Buttons {
       click: this.context.createInvokeHandler('editor.indent'),
     });
 
-    this.context.memo('button.justifyLeft', func.invoke(justifyLeft, 'render'));
-    this.context.memo('button.justifyCenter', func.invoke(justifyCenter, 'render'));
-    this.context.memo('button.justifyRight', func.invoke(justifyRight, 'render'));
-    this.context.memo('button.justifyFull', func.invoke(justifyFull, 'render'));
     this.context.memo('button.outdent', func.invoke(outdent, 'render'));
     this.context.memo('button.indent', func.invoke(indent, 'render'));
 
@@ -501,10 +505,6 @@ export default class Buttons {
           },
         }),
         this.ui.dropdown([
-          this.ui.buttonGroup({
-            className: 'note-align',
-            children: [justifyLeft, justifyCenter, justifyRight, justifyFull],
-          }),
           this.ui.buttonGroup({
             className: 'note-list',
             children: [outdent, indent],

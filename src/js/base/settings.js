@@ -80,7 +80,7 @@ $.summernote = $.extend($.summernote, {
       ['font', ['bold', 'underline', 'clear']],
       ['fontname', ['fontname']],
       ['color', ['color']],
-      ['para', ['ul', 'ol', 'paragraph']],
+      ['para', ['ul', 'ol', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'paragraph']],
       ['table', ['table']],
       ['insert', ['link', 'picture', 'video']],
       ['view', ['fullscreen', 'codeview', 'help']],
