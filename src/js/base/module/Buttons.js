@@ -705,6 +705,14 @@ export default class Buttons {
       }).render();
     });
 
+    this.context.memo('button.floatCenter', () => {
+      return this.button({
+        contents: this.ui.icon(this.options.icons.floatCenter),
+        tooltip: this.lang.image.floatCenter,
+        click: this.context.createInvokeHandler('editor.floatMe', 'center'),
+      }).render();
+    });
+
     // Remove Buttons
     this.context.memo('button.removeMedia', () => {
       return this.button({

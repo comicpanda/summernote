@@ -28,6 +28,7 @@ $.extend($.summernote.lang, {
       resizeNone: 'Original size',
       floatLeft: 'Float Left',
       floatRight: 'Float Right',
+      floatCenter: 'Float Center',
       floatNone: 'Remove float',
       shapeRounded: 'Shape: Rounded',
       shapeCircle: 'Shape: Circle',
