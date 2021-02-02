@@ -171,6 +171,8 @@ export default class Editor {
      */
     this.insertHorizontalRule = this.wrapCommand(() => {
       const hrNode = this.getLastRange().insertNode(dom.create('HR'));
+      hrNode.style.marginTop = '20px'; 
+      hrNode.style.marginBottom = '20px'; 
       if (hrNode.nextSibling) {
         this.setLastRange(range.create(hrNode.nextSibling, 0).normalize().select());
       }
