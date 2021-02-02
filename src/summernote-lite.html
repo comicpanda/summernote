@@ -15,7 +15,13 @@
     $(document).ready(function() {
       $('.summernote').summernote({
         height: 300,
-        tabsize: 2
+        tabsize: 2,
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+          ['para', ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull']],
+          ['insert', ['picture']],
+          ['hr', ['hr']]
+        ]
       });
     });
   </script>
