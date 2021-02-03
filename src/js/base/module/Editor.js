@@ -301,15 +301,14 @@ export default class Editor {
      */
     this.floatMe = this.wrapCommand((value) => {
       const $target = $(this.restoreTarget());
-      $target.toggleClass('note-float-left', value === 'left');
-      $target.toggleClass('note-float-right', value === 'right');
       const css = { 'display': '', 'margin': '', 'float': '' };
+      
       if (value === 'center') {
         css.display = 'block';
         css.margin = '0 auto';
       } else {
         css.float = value === 'none' ? '' : value;
-        css.margin = (value === 'left' ? '0 10px 0 0' : (value === 'right' ? '0 0 10px 0' : ''));
+        css.margin = value === 'right' ? '0 0 0 10px' : '0 10px 0 0';
       }
 
       $target.css(css);
