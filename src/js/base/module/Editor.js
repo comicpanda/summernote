@@ -302,7 +302,7 @@ export default class Editor {
     this.floatMe = this.wrapCommand((value) => {
       const $target = $(this.restoreTarget());
       const css = { 'display': '', 'margin': '', 'float': '' };
-      
+
       if (value === 'center') {
         css.display = 'block';
         css.margin = '0 auto';
@@ -383,9 +383,16 @@ export default class Editor {
     }).on('paste', (event) => {
       this.setLastRange();
       this.context.triggerEvent('paste', event);
-    }).on('input', () => {
+    }).on('input', (event) => {
+      if(event.originalEvent.inputType === undefined) {
+        this.$editable.html('');
+      } else if (event.originalEvent.inputType === 'insertFromPaste' ||
+        event.originalEvent.inputType === 'insertFromDrop') {
+        this.context.triggerEvent('filter', event);
+      }
+
       // To limit composition characters (e.g. Korean)
-      if (this.isLimited(0) && this.snapshot) {
+      if (this.isLimited(0, 'fromInput') && this.snapshot) {
         this.history.applySnapshot(this.snapshot);
       }
     });
@@ -481,7 +488,7 @@ export default class Editor {
   isLimited(pad, event) {
     pad = pad || 0;
 
-    if (typeof event !== 'undefined') {
+    if (typeof event !== 'undefined' && typeof event !== 'string') {
       if (key.isMove(event.keyCode) ||
           key.isNavigation(event.keyCode) ||
           (event.ctrlKey || event.metaKey) ||
@@ -491,8 +498,9 @@ export default class Editor {
     }
 
     if (this.options.maxTextLength > 0) {
-      if ((this.$editable.text().length + pad) > this.options.maxTextLength) {
-        return true;
+      if (event === 'fromInput') {
+        const len = this.$editable.text().length;
+        this.context.triggerEvent('hitLimit', len + pad > this.options.maxTextLength, len);
       }
     }
     return false;
