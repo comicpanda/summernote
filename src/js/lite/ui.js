@@ -8,7 +8,7 @@ const editor = renderer.create('<div class="note-editor note-frame"/>');
 const toolbar = renderer.create('<div class="note-toolbar" role="toolbar"/>');
 const editingArea = renderer.create('<div class="note-editing-area"/>');
 const codable = renderer.create('<textarea class="note-codable" aria-multiline="true"/>');
-const editable = renderer.create('<div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/>');
+const editable = renderer.create('<div class="note-editable ep-html-contents" contentEditable="true" role="textbox" aria-multiline="true"/>');
 const statusbar = renderer.create([
   '<output class="note-status-output" role="status" aria-live="polite"></output>',
   '<div class="note-statusbar" role="status">',
